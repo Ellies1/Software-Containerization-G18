@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ice Cream Shop Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1 class="header">Ice Cream Inventory Management</h1>
+    <div class="container">
+        
+
+        <div id="chocolate" class="flavor">
+            <h3>Chocolate Ice Cream</h3>
+            <img src="images/chocolate.jpg" class="image">
+            <p class="stock">Stock: <span id="stock-chocolate">10</span></p>
+            <button onclick="sell('chocolate')" class="sellIt">Sell</button>
+            <button onclick="restock('chocolate')" class="restockIt">Restock</button>
+        </div>
+
+        <div id="strawberry" class="flavor">
+            <h3>Strawberry Ice Cream</h3>
+            <img src="images/strawberry.jpg" class="image">
+            <p class="stock">Stock: <span id="stock-strawberry">10</span></p>
+            <button onclick="sell('strawberry')" class="sellIt">Sell</button>
+            <button onclick="restock('strawberry')" class="restockIt">Restock</button>
+        </div>
+
+        <div id="blueberry" class="flavor">
+            <h3>Blueberry Ice Cream</h3>
+            <img src="images/blueberry.jpg" class="image">
+            <p class="stock">Stock: <span id="stock-blueberry">10</span></p>
+            <button onclick="sell('blueberry')" class="sellIt">Sell</button>
+            <button onclick="restock('blueberry')" class="restockIt">Restock</button>
+        </div>
+    </div>
+
+    <script src="stock.js">
+       
+    </script>
+</body>
+</html>

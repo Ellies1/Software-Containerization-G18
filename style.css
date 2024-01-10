@@ -1,0 +1,36 @@
+body { 
+  font-family: Arial, sans-serif; 
+  background-image: url('images/indexBackgroundImage.jpg');
+}
+.header{
+  text-align: center;
+  color: rgb(165, 87, 100);
+  font-weight: bold;
+}
+.container{ 
+  width: 50%; margin: auto; text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+ }
+.flavor { margin-bottom: 20px; }
+.flavor h3 { margin-bottom: 5px; }
+.stock { margin-bottom: 5px; }
+.sellIt{
+  background-color:brown;
+  color: white;
+  font-size: 20px;
+  height: 30px;
+  width: 60px;
+}
+.restockIt{
+  background-color: green;
+  color: white;
+  font-size: 20px;
+  height: 30px;
+  width: 100px;
+}
+
+.image{
+  height: 180px;
+  width: 260px;
+}
