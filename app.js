@@ -36,7 +36,7 @@ app.post('/sell/:flavor', async (req, res) => {
   try {
     const iceCream = await iceCreams.findOne({ flavor: flavor });
     if (iceCream && iceCream.stock > 0) {
-      iceCream.stock -= 1; // 减少库存
+      iceCream.stock -= 1; 
       await iceCream.save();
       res.json({ stock: iceCream.stock });
     } else {
@@ -53,7 +53,7 @@ app.post('/restock/:flavor/:quantity', async (req, res) => {
   try {
     const iceCream = await iceCreams.findOne({ flavor: flavor });
     if (iceCream) {
-      iceCream.stock += quantity; // 增加库存
+      iceCream.stock += quantity; 
       await iceCream.save();
       res.json({ stock: iceCream.stock });
     } else {
