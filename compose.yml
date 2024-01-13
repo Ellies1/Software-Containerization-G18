@@ -1,0 +1,21 @@
+version: '3'
+services:
+  mongodb:
+    image: zhuoran0219/db:1.0
+    ports:
+    - 27017:27017 
+    networks:
+      - mongo-network
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+
+  nodeapp:
+    image: zhuoran0219/ice-cream-management:1.0
+    ports:
+      - 3000:3000
+    networks:
+      - mongo-network
+
+networks:
+  mongo-network:

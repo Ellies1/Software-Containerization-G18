@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const dbUri = 'mongodb://admin:password@localhost:27017/ice-cream?authSource=admin';
+const dbUri = process.env.MONGO_URI || 'mongodb://admin:password@localhost:27017/ice-cream?authSource=admin';
 
 const initializeIceCreams = async () => {
   const flavors = ['chocolate', 'strawberry', 'blueberry'];
