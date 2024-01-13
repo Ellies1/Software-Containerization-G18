@@ -1,23 +1,41 @@
-let stock = {
-  chocolate: 10,
-  strawberry: 10,
-  blueberry: 10
-};
-
 function sell(flavor) {
-  if (stock[flavor] > 0) {
-      stock[flavor]--;
+  fetch(`/sell/${flavor}`, { method: 'POST' })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`${flavor} is sold out!`);
+      }
+      return response.json();
+    })
+    .then(() => {
       updateDisplay(flavor);
-  } else {
-      alert(flavor.charAt(0).toUpperCase() + flavor.slice(1) + " is sold out!");
-  }
+    })
+    .catch(error => {
+      alert(error.message);
+    });
 }
 
 function restock(flavor, quantity = 5) {
-  stock[flavor] += quantity;
-  updateDisplay(flavor);
+  fetch(`/restock/${flavor}/${quantity}`, { method: 'POST' })
+    .then(response => response.json())
+    .then(() => {
+      updateDisplay(flavor);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
 }
 
 function updateDisplay(flavor) {
-  document.getElementById('stock-' + flavor).textContent = stock[flavor];
+  fetch(`/stock/${flavor}`)
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById('stock-' + flavor).textContent = data.stock;
+    })
+    .catch(error => console.error('Error:', error));
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  ['chocolate', 'strawberry', 'blueberry'].forEach(flavor => {
+    updateDisplay(flavor);
+  });
+});
