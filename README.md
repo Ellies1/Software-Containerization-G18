@@ -36,5 +36,7 @@ Before you begin, ensure that you have Docker installed on your system. Docker i
 The system includes the following services:
 
 mongodb: A MongoDB database server accessible on port `27017`.
+
 nodeapp: The Ice Cream Management Node.js application accessible on port `3000`.
+
 mongo-express: A Mongo Express web interface accessible on port `8081`, which provides a web-based MongoDB admin interface.
