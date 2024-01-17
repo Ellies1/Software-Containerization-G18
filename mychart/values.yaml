@@ -1,14 +1,27 @@
-# Default values for my-app.
+# Default values for mychart.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-
+mongodb:
+  username: admin
+  password: password
+  database_url: mongodb-service
+  
 replicaCount: 1
 
-image:
-  repository: nginx
-  pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+images:
+  nodeapp:
+    repository: zhuoran0219/ice-cream-management
+    tag: "1.0"
+    pullPolicy: IfNotPresent
+  mongodb:
+    repository: zhuoran0219/db
+    tag: "1.0"
+    pullPolicy: IfNotPresent
+  mongoExpress:
+    repository: zhuoran0219/mgex
+    tag: "1.0"
+    pullPolicy: IfNotPresent
+
 
 imagePullSecrets: []
 nameOverride: ""
@@ -39,9 +52,21 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
-service:
-  type: ClusterIP
-  port: 80
+services:
+  nodeapp:
+    type: LoadBalancer
+    port: 80 
+    targetPort: 3000 
+    nodePort: 30011
+  mongodb:
+    type: ClusterIP
+    port: 27017
+    targetPort: 27017
+  mongoExpress:
+    type: NodePort
+    port: 8081
+    targetPort: 8081
+    nodePort: 30010
 
 ingress:
   enabled: false
