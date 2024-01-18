@@ -12,7 +12,6 @@ COPY public /usr/src/app/public
 
 COPY views /usr/src/app/views
 
-COPY models /usr/src/app/models
 
 EXPOSE 3000
 
