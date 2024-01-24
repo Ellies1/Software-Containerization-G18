@@ -47,3 +47,21 @@ spec:
       port: {{ .Values.services.nodeapp.port }}
       nodePort: {{ .Values.services.nodeapp.nodePort }}
       targetPort: {{ .Values.services.nodeapp.targetPort }}
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nodeapp-ingress
+spec:
+  rules:
+  - host: icecream-app-domain.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: nodeapp-service
+            port:
+              number: {{ .Values.services.nodeapp.port }}
