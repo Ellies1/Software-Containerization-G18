@@ -47,3 +47,22 @@ spec:
       port: {{ .Values.services.mongoExpress.port }}
       targetPort: {{ .Values.services.mongoExpress.targetPort }}
       nodePort: {{ .Values.services.mongoExpress.nodePort }}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mongo-express-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  rules:
+    - host: www.mongoexpress.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: mongo-express-service 
+                port:
+                  number: {{ .Values.services.mongoExpress.port }}
