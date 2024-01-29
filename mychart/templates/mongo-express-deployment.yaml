@@ -33,6 +33,8 @@ spec:
             configMapKeyRef:
               name: {{ .Release.Name }}-mongodb-configmap
               key: database_url
+        - name: ME_CONFIG_SITE_BASEURL
+          value: /v2
 ---
 apiVersion: v1
 kind: Service
@@ -47,22 +49,22 @@ spec:
       port: {{ .Values.services.mongoExpress.port }}
       targetPort: {{ .Values.services.mongoExpress.targetPort }}
       nodePort: {{ .Values.services.mongoExpress.nodePort }}
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: mongo-express-ingress
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
-spec:
-  rules:
-    - host: www.mongoexpress.com
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: mongo-express-service 
-                port:
-                  number: {{ .Values.services.mongoExpress.port }}
+# ---
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: mongo-express-ingress
+# spec:
+#   rules:
+#     - host: www.mongoexpress.com
+#       http:
+#         paths:
+#           - path: /
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: mongo-express-service 
+#                 port:
+#                   number: {{ .Values.services.mongoExpress.port }}
+
+                  
