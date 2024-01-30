@@ -1,35 +1,32 @@
----
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: icecreamapp-ingress
+  annotations:
+    meta.helm.sh/release-name: nodeappv1
+    meta.helm.sh/release-namespace: default
+  labels:
+    app.kubernetes.io/managed-by: Helm
 spec:
   rules:
-    - host: www.myicecreamapp.com
-      http:
-        paths:
-          - path: /v1
-            pathType: Prefix
-            backend:
-              service:
-                name: nodeapp-service 
-                port:
-                  number: {{ .Values.services.nodeapp.port }}
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: icecreamapp-ingress
-spec:
-  rules:
-    - host: www.myicecreamapp.com
-      http:
-        paths:
-          - path: /v2
-            pathType: Prefix
-            backend:
-              service:
-                name: mongo-express-service 
-                port:
-                  number: {{ .Values.services.mongoExpress.port }}
-
+  - host: www.myicecreamapp.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: nodeapp-service
+            port:
+              number: 80
+      - path: /v2
+        pathType: Prefix
+        backend:
+          service:
+            name: mongo-express-service
+            port:
+              number: 8081
+status:
+  loadBalancer:
+    ingress:
+    - ip: 192.168.59.100

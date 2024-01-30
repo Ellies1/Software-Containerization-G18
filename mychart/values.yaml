@@ -74,7 +74,7 @@ ingress:
   hosts:
     - host: www.myicecreamapp.com
       paths:
-        - path: /v1
+        - path: /
           pathType: Prefix
           backend:
             service:
