@@ -12,7 +12,7 @@ spec:
   tls:
   - hosts:
     - www.myicecreamapp.com
-    secretName: icecreamapp-tls
+    secretName: my-app-tls
   rules:
   - host: www.myicecreamapp.com
     http:
