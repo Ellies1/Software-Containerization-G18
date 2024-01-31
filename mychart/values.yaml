@@ -92,7 +92,7 @@ ingress:
   tls:
   - hosts:
     - www.myicecreamapp.com
-    secretName: icecreamapp-tls
+    secretName: my-app-tls
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
