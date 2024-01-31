@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: my-app-cert
+  namespace: default
+spec:
+  secretName: my-app-tls
+  issuerRef:
+    name: ca-issuer
+    kind: ClusterIssuer
+  commonName: "www.myicecreamapp.com"
+  dnsNames:
+  - "www.myicecreamapp.com"
