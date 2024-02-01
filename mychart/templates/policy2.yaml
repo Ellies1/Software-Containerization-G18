@@ -1,0 +1,15 @@
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: allow-ingress-to-database
+spec:
+  podSelector:
+    matchLabels:
+      app: mongodb
+  ingress:
+
+    # Allow access to database
+    - from:
+        - podSelector:
+            matchLabels:
+              app: nodeapp
