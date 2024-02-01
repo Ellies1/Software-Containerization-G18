@@ -1,0 +1,31 @@
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: allow-internet-only
+spec:
+  podSelector: {}
+  policyTypes:
+    - Egress
+  egress:
+
+    # Allow communication to Kubernetes DNS service
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system
+        - podSelector:
+            matchLabels:
+              k8s-app: kube-dns-5bfd847c64-8tcns
+      ports:
+        - protocol: UDP
+          port: 53
+
+    # Allow internet access
+    - to:
+        - ipBlock:
+            cidr: 0.0.0.0/0
+
+            # Exclude traffic to Kubernetes service IPs and pods
+            except:
+              - 10.44.0.0/14
+              - 10.48.0.0/20
