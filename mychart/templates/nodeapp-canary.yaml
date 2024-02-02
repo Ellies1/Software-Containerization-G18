@@ -35,8 +35,4 @@ spec:
               key: password1
         - name: MONGO_URI
           value: "mongodb://admin:password@mongodb-service.{{ .Release.Namespace }}.svc.cluster.local:27017/ice-cream?authSource=admin"
-        resources:
-          requests:
-            cpu: "25m"
-          limits:
-            cpu: "100m"
+
