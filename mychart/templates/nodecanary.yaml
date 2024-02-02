@@ -6,7 +6,7 @@ metadata:
     app: nodeapp
     track: canary
 spec:
-  replicas: 1
+  replicas: 1  
   selector:
     matchLabels:
       app: nodeapp
@@ -37,6 +37,6 @@ spec:
           value: "mongodb://admin:password@mongodb-service.{{ .Release.Namespace }}.svc.cluster.local:27017/ice-cream?authSource=admin"
         resources:
           requests:
-            cpu: "25m"
+            cpu: "10m" 
           limits:
-            cpu: "100m"
+            cpu: "25m" 
