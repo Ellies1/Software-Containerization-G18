@@ -5,9 +5,14 @@ metadata:
   annotations:
     meta.helm.sh/release-name: nodeappv1
     meta.helm.sh/release-namespace: default
+    cert-manager.io/issuer: ca-issuer
   labels:
     app.kubernetes.io/managed-by: Helm
 spec:
+  tls:
+  - hosts:
+    - www.myicecreamapp.com
+    secretName: my-app-tls
   rules:
   - host: www.myicecreamapp.com
     http:
@@ -26,6 +31,7 @@ spec:
             name: mongo-express-service
             port:
               number: 8081
+              
 status:
   loadBalancer:
     ingress:
