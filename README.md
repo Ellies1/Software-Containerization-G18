@@ -82,7 +82,7 @@ Check whether http redirect works properly:
    
       Use Google Cloud SDK Shell to connect to the cluster we established
 
-      `gcloud container clusters get-credentials software-containerization-g18-cluster --zone europe-west4-a --project quixotic-market-412417`
+      ```gcloud container clusters get-credentials software-containerization-g18-cluster --zone europe-west4-a --project quixotic-market-412417```
 
 2. **Install the Application Using Helm**
    
