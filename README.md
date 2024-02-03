@@ -84,13 +84,13 @@ Check whether http redirect works properly:
 
       `gcloud container clusters get-credentials software-containerization-g18-cluster --zone europe-west4-a --project quixotic-market-412417`
 
-3. **Install the Application Using Helm**
+2. **Install the Application Using Helm**
    
       Run the following command to install the application using Helm in the default namespace (you can replace default namespace with the desired namespace):
 
       ` helm install my-ice-cream-app [CHART_PATH] `
 
-4. **Check helm deployment status**
+3. **Check helm deployment status**
 
       `helm list`
 
@@ -100,9 +100,13 @@ Check whether http redirect works properly:
    
       `kubectl get pods`
 
-3. **Scale**
+2. **Scale**
    
       `kubectl apply -f [HPA_PATH]\hpa.yaml`
+
+3. **Display the hpa**
+   
+      `kubectl get hpa`
 
 4. **Check pods after scaling:**
 
@@ -114,7 +118,7 @@ Check whether http redirect works properly:
    
       `helm delete my-ice-cream-app`
 
-4. **Check helm deployment status**
+2. **Check helm deployment status**
 
       `helm list`
 
