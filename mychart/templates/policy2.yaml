@@ -8,7 +8,7 @@ spec:
       app: mongodb
   ingress:
 
-    # Allow access to database
+    # Allow access from nodeapp
     - from:
         - podSelector:
             matchLabels:
