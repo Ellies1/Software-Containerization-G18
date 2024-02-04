@@ -30,10 +30,10 @@ nodeapp-service         LoadBalancer   10.48.7.135   34.141.129.122   80:30011/T
 ```
 
 ### Storage Class
-For storage, we used MongoDB. Instead of a StatefulSet, we configured a deployment mongodb-deployment.yaml to set up the mongoDB. Alongside the database deployment, a mongo-serivce is also configured which listens on port 27107 of the cluster IP and redirects the traffic to the port 27017 of the MongoDB pod. In order to avoid external excess, the mongodb-service only exposes on cluster IP. Node port and external IP are not established. 
-In terms of storage volume, a static persistent volume of 1 GB which allows read and write from a single node and resides on the host path is created in mongodb-pv.yaml. Respectively, a persistent volume claim is also created in mongodb-pvc.yaml. The reclaim policy of the PVC is Retain since the bonded volume is not dynamically allocated.
+For storage, we used MongoDB. We configured a deployment mongodb-deployment.yaml to set up the mongoDB. Alongside the database deployment, a mongodb-serivce is also configured which listens on port 27107 of the cluster IP and redirects the traffic to the port 27017 of the MongoDB pod.
+In terms of storage volume, a static persistent volume of 1 GB which allows read and write from a single node and resides on the host path is created in mongodb-pv.yaml. Respectively, a persistent volume claim is also created in mongodb-pvc.yaml. 
 
-In addition, a Secret mongo-secret.yaml and a ConfigMap mongo-configmap.yaml are also configured to store the configurations and credentials for the MongoDB. Those information are referred inside the specification of the MongoDB pod and API pod.
+In addition, a Secret mongo-secret.yaml and a ConfigMap mongo-configmap.yaml are also configured to store the configurations and credentials for the MongoDB.
 
 ### Image Registry
 
