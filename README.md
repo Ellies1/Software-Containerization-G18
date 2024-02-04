@@ -73,12 +73,52 @@ To check their permissions these commands can be used:
     $ kubectl auth can-i get secret --namespace default --as user3
     yes
 
-
-
 ### Network Policies
 
 Three network policies are defined respectively in policy1.yaml, policy2.yaml and policy3.yaml.
 The first policy is allow-internet-only, which permits pods in the default namespace to access the Internet but blocks egress traffic to the other pods within the cluster. This policy also allows communication to Kubernetes DNS service. The second policy, allow-ingress-to-database, allows only ingress traffic from the nodeapp. The third policy, allow-egress-to-database, allows only egress traffic to the mongodb.
+
+1. allow-internet-only 
+
+Create a random testing pod:
+  
+    $ kubectl run test-$RANDOM --rm -i -t --image=alpine -- sh
+
+Try to access the Internet:
+
+    $ wget -qO- --timeout=2 http://www.google.com
+
+This should return success.
+
+Try to access the DB:
+
+    $ wget -qO- --timeout=2 http://mongodb-service:27017
+
+This should return time out. Use exit or crtl + d to quit.
+
+2. allow-ingress-to-database and allow-egress-to-database
+
+Create a random testing pod:
+
+    $ kubectl run test-$RANDOM --rm -i -t --image=alpine -- sh
+
+Try to access the DB:
+
+    $ wget -qO- --timeout=2 http://mongodb-service:27017
+
+This should return time out. Use exit or crtl + d to quit.
+
+Enter a pod whose label matches "app=nodeapp":
+
+    $ kubectl exec -n default nodeapp-deployment-7f77cfc5cc-hdcw7  -it -- /bin/sh
+
+Try to access the DB:
+
+    $ wget -qO- --timeout=2 http://mongodb-service:27017
+
+This should return success. Use exit or crtl + d to quit.
+
+
 ## Container build and first deployment, scaling, uninstallation
 
 ### Image build and Push
