@@ -52,6 +52,30 @@ Check whether http redirect works properly:
 
 ### Roles
 
+We defined three roles for our cluster to ensure proper access control to different resources. The first one is the pod-reader, which are only allowed to get, watch and list the pods. The second one is the developer, which can not only read information but also create, delete and update resources including pods and services. The third role is the secret-reader, which is permitted to get, watch and list the secrets. Detailed definition can be found in role-.yaml, clusterRole-.yaml and roleBinding-.yaml.
+
+We created three users as an example, with their roles listed below:
+<br>User1: pod-reader
+<br>User2: developer
+<br>User3: developer, secret-reader.
+
+To check their permissions these commands can be used:
+
+    $ kubectl auth can-i get pod --namespace default --as user1 
+    yes
+    $ kubectl auth can-i get services --namespace default --as user1
+    no
+    $ kubectl auth can-i create pod --namespace default --as user2
+    yes
+    $ kubectl auth can-i get secret --namespace default --as user2
+    no
+    $ kubectl auth can-i delete services --namespace default --as user3
+    yes
+    $ kubectl auth can-i get secret --namespace default --as user3
+    yes
+
+
+
 ### Network Policies
 
 
