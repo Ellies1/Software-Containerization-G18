@@ -116,7 +116,7 @@ Check whether http redirect works properly:
 
 1. **Uninstall the Application Using Helm**
    
-      `helm delete my-ice-cream-app`
+      `helm uninstall my-ice-cream-app`
 
 2. **Check helm deployment status**
 
