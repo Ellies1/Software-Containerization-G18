@@ -1,11 +1,17 @@
 kind: NetworkPolicy
 apiVersion: networking.k8s.io/v1
 metadata:
-  namespace: default
-  name: deny-from-other-namespaces
+  name: allow-egress-to-database
 spec:
   podSelector:
-   matchLabels:
-  ingress:
-    - from:
-        - podSelector: {}
+    matchLabels:
+      app: nodeapp
+  policyTypes:
+    - Egress
+  egress:
+
+    # Allow access to database
+    - to:
+        - podSelector:
+            matchLabels:
+              app: mongodb
