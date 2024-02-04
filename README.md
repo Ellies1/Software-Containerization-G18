@@ -112,7 +112,7 @@ Check whether http redirect works properly:
 
       `kubectl get pods`
 
-### Uninstall deployment
+### Uninstall application
 
 1. **Uninstall the Application Using Helm**
    
