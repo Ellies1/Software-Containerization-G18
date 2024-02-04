@@ -78,7 +78,8 @@ To check their permissions these commands can be used:
 
 ### Network Policies
 
-
+Three network policies are defined respectively in policy1.yaml, policy2.yaml and policy3.yaml.
+The first policy is allow-internet-only, which permits pods in the default namespace to access the Internet but blocks egress traffic to the other pods within the cluster. This policy also allows communication to Kubernetes DNS service. The second policy, allow-ingress-to-database, allows only ingress traffic from the nodeapp. The third policy, allow-egress-to-database, allows only egress traffic to the mongodb.
 ## Container build and first deployment, scaling, uninstallation
 
 ### Image build and Push
