@@ -69,11 +69,11 @@ Check whether http redirect works properly:
 
 3. **Build icecream app image**
    
-      ` docker build -t zhuoran0219/ice-cream-management:1.0`
+      `docker build -t zhuoran0219/ice-cream-management:1.0 .`
 
 4. **Push icecream app image**
    
-      ` docker push zhuoran0219/ice-cream-management:1.0`
+      `docker push zhuoran0219/ice-cream-management:1.0`
 
 ### Deploy application
 
